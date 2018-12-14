@@ -21,3 +21,22 @@ class Solution:
                   temp = A[i]
                   count = 1
         return temp
+##better one##
+def majorityElement(self, A):
+        if len(A) == 1:
+            return A[0]
+        elem_count = {}
+        elem_count[A[0]] = 1
+        for idx in range(1,len(A)):
+            if elem_count.get(A[idx]):
+                elem_count[A[idx]] += 1
+            else:
+                if len(elem_count) == 0:
+                    elem_count[A[idx]] = 1
+                    continue
+                for each_key in elem_count.keys():
+                    elem_count[each_key] -= 1
+                    if elem_count[each_key] == 0:
+                        del elem_count[each_key]
+        for each_key in elem_count.keys():
+            return each_key
